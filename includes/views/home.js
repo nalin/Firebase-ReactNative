@@ -10,6 +10,8 @@ import {
     TouchableWithoutFeedback
 } from "react-native";
 
+import * as firebase from "firebase";
+
 import Button from "apsl-react-native-button";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import {Hideo} from "react-native-textinput-effects";
@@ -37,7 +39,7 @@ class Home extends Component {
     async logout() {
 
         try {
-
+            console.log("logging out...");
             await firebase.auth().signOut();
 
             this.props.navigator.push({

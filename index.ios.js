@@ -34,7 +34,8 @@ class Initial extends Component {
   getInitialView() {
 
     firebase.auth().onAuthStateChanged((user) => {
-
+      console.log("*************** USER:");
+      console.log(user)
       let initialView = user ? "Home" : "Login";
 
       this.setState({

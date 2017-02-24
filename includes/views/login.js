@@ -16,7 +16,7 @@ import React, {Component} from "react";
 import * as firebase from "firebase";
 import Button from "apsl-react-native-button";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
-import {Sae} from "react-native-textinput-effects";
+import {Sae, Hoshi} from "react-native-textinput-effects";
 import DismissKeyboard from "dismissKeyboard";
 
 import CommonStyle from "../styles/common.css";
@@ -85,6 +85,33 @@ class Login extends Component {
 
     }
 
+    async gLogin() {
+
+        DismissKeyboard();
+
+        try {
+            //await firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password);
+            var provider = new firebase.auth.GoogleAuthProvider();
+            firebase.auth().signInWithPopup(provider);
+
+            // this.setState({
+            //     response: "Logged In!"
+            // });
+            //
+            // setTimeout(() => {
+            //     this.props.navigator.push({
+            //         name: "Home"
+            //     })
+            // }, 1500);
+
+        } catch (error) {
+            // this.setState({
+            //     response: error.toString()
+            // })
+        }
+
+    }
+
     render() {
 
         return (
@@ -117,6 +144,9 @@ class Login extends Component {
                             </Button>
                             <Button onPress={this.login} style={styles.buttons} textStyle={{fontSize: 18}}>
                                 Login
+                            </Button>
+                            <Button onPress={this.gLogin} style={styles.buttons} textStyle={{fontSize: 18}}>
+                                Login with Google
                             </Button>
                         </View>
                     </View>
